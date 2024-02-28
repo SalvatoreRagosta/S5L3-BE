@@ -1,0 +1,123 @@
+INDEX HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scarpe & Co</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Scarpe & Co</h1>
+    </header>
+    <div id="product-list">
+        <!-- Lista dei prodotti visualizzati qui -->
+    </div>
+    <footer>
+        <p>&copy; 2024 Scarpe & Co</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+CSS
+
+/* Stili CSS per il layout e il design */
+
+/* Reset dei margini e del padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+#product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.product {
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+JAVASCRIPT
+
+// Dati dei prodotti
+const products = [
+    {
+        name: "Scarpe da Tennis Nike",
+        price: "$100",
+        description: "Scarpe da tennis leggere e confortevoli.",
+        image: "nike-tennis-shoes.jpg",
+        additionalImages: ["nike-tennis-shoes-2.jpg", "nike-tennis-shoes-3.jpg"]
+    },
+    {
+        name: "Scarpe da Tennis Adidas",
+        price: "$90",
+        description: "Scarpe da tennis adatte per performance di alto livello.",
+        image: "adidas-tennis-shoes.jpg",
+        additionalImages: ["adidas-tennis-shoes-2.jpg", "adidas-tennis-shoes-3.jpg"]
+    },
+    // Aggiungere altri prodotti qui
+];
+
+// Funzione per visualizzare i prodotti nella lista
+function displayProducts() {
+    const productList = document.getElementById("product-list");
+    productList.innerHTML = "";
+    products.forEach(product => {
+        const productElement = document.createElement("div");
+        productElement.classList.add("product");
+        productElement.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h2>${product.name}</h2>
+            <p>${product.price}</p>
+            <button onclick="showProductDetails('${product.name}')">Dettagli</button>
+        `;
+        productList.appendChild(productElement);
+    });
+}
+
+// Funzione per visualizzare i dettagli del prodotto
+function showProductDetails(productName) {
+    const product = products.find(prod => prod.name === productName);
+    if (product) {
+        // Implementa la visualizzazione dei dettagli del prodotto
+        console.log(product);
+        // Potresti utilizzare una modale o reindirizzare l'utente a una nuova pagina per visualizzare i dettagli
+    }
+}
+
+// Esegui la visualizzazione iniziale dei prodotti
+displayProducts();
